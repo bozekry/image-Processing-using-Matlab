@@ -1,0 +1,38 @@
+function [ new_image ] = saltandpepper( img )
+[h w l] = size(img);
+ps = str2double(inputdlg('Please Enter ps!'));
+pp = str2double(inputdlg('Please Enter pp!'));
+new_image = img;
+nsalt = round(ps*w*h);
+npepper = round(pp*w*h);
+if l==1
+for i=1:nsalt
+    row = ceil(rand(1,1)*h);
+    colomn = ceil(rand(1,1)*w);
+    new_image(row,colomn)=255;
+end
+
+for i=1:npepper
+    row = ceil(rand(1,1)*h);
+    colomn = ceil(rand(1,1)*w);
+    new_image(row,colomn)=0;
+end
+else
+    for i=1:nsalt
+        row = ceil(rand(1,1)*h);
+        colomn = ceil(rand(1,1)*w);
+        for k=1:3
+            new_image(row,colomn,k)=255;
+        end
+    end
+    for i=1:npepper
+        row = ceil(rand(1,1)*h);
+        colomn = ceil(rand(1,1)*w);
+        for k=1:3
+            new_image(row,colomn,k)=0;
+        end
+    end
+end
+new_image = uint8(new_image);
+end
+
